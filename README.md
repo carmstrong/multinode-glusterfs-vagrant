@@ -60,14 +60,13 @@ volume, and may never even talk to this host again! Neat!
 We can use this like a local filesystem:
 
 ```console
-$ vagrant ssh gluster-client
-gluster-client $ echo "hello" | sudo tee /mnt/glusterfs/f.txt
+$ vagrant ssh gluster-client -c 'echo hello | sudo tee /mnt/glusterfs/f.txt'
 ```
 
 Or, we can write big chunks of data to see how it performs:
 
 ```console
-gluster-client $ sudo dd if=/dev/urandom of=/mnt/glusterfs/junk bs=64M count=16
+$ vagrant ssh gluster-client -c 'sudo dd if=/dev/urandom of=/mnt/glusterfs/junk bs=64M count=16'
 ```
 
 ## Test the cluster
@@ -110,7 +109,7 @@ vagrant@gluster-server-x:/$ sudo gluster volume info
 You can also tail the gluster logs:
 
 ```console
-sudo tail -f /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
+vagrant@gluster-server-x:/$ sudo tail -f /var/log/glusterfs/etc-glusterfs-glusterd.vol.log
 ```
 
 As you bring down the other hosts, you'll see the healthy host report them as down in the logs:
