@@ -2,10 +2,11 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu-1404"
+  config.vm.box = "ubuntu/trusty64"
   # We setup three nodes to be gluster hosts, and one gluster client
   (1..3).each do |i|
     config.vm.define vm_name = "gluster-server-#{i}" do |config|
+      config.cache.scope = :box
       config.vm.hostname = vm_name
       ip = "172.21.12.#{i+10}"
       config.vm.network :private_network, ip: ip
@@ -16,6 +17,7 @@ Vagrant.configure("2") do |config|
     end
   end
   config.vm.define vm_name = "gluster-client" do |config|
+    config.cache.scope = :box
     config.vm.hostname = vm_name
     ip = "172.21.12.10"
     config.vm.network :private_network, ip: ip

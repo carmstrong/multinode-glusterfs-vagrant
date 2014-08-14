@@ -8,6 +8,12 @@ It's fun to learn [GlusterFS](http://gluster.org), kids!
 
 Install [Vagrant](http://www.vagrantup.com/downloads.html) and a provider such as [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
+We'll also need the [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) plugin so we don't pull all of these packages unnecessarily on four hosts.
+
+```console
+$ vagrant plugin install vagrant-cachier
+```
+
 ## Start the VMs
 
 This instructs Vagrant to start the VMs and install GlusterFS on them.
@@ -59,4 +65,12 @@ What happens if we instead take down the leader?
 
 ```console
 $ vagrant halt gluster-server-1
+```
+
+## Cleanup
+
+When you're all done, tell Vagrant to destroy the VMs.
+
+```console
+$ vagrant destroy -f
 ```
