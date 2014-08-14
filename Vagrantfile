@@ -10,7 +10,6 @@ Vagrant.configure("2") do |config|
       config.vm.hostname = vm_name
       ip = "172.21.12.#{i+10}"
       config.vm.network :private_network, ip: ip
-      config.vm.synced_folder ".", "/home/vagrant/scripts", type: "rsync"
       config.vm.provision :shell, :inline => "DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -yq python-software-properties", :privileged => true
       config.vm.provision :shell, :inline => "DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:semiosis/ubuntu-glusterfs-3.5", :privileged => true
       config.vm.provision :shell, :inline => "DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -yq glusterfs-server", :privileged => true
