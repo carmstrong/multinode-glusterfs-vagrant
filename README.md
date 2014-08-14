@@ -42,6 +42,8 @@ $ vagrant ssh gluster-server-1 -c 'sudo gluster volume create glustertest replic
 $ vagrant ssh gluster-server-1 -c 'sudo gluster volume start glustertest'
 ```
 
+Here, we create a [replicated volume](http://gluster.org/community/documentation/index.php/Gluster_3.2:_Creating_Replicated_Volumes) across three hosts. The number of bricks must match the number of replicas.
+
 ## Mount the volume
 
 On our client, we can mount this volume and play around with it.
