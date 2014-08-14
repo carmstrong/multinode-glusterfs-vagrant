@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/trusty64"
-  # We setup three nodes to be gluster hosts, and one gluster client
+  # We setup three nodes to be gluster hosts, and two gluster clients
   (1..3).each do |i|
     config.vm.define vm_name = "gluster-server-#{i}" do |config|
       config.cache.scope = :box
