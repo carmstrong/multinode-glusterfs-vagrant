@@ -53,7 +53,22 @@ $ vagrant ssh deis-client -c 'sudo mkdir /mnt/glusterfs && sudo mount -t gluster
 Note here that we just need to specify one host to mount - this is because the gluster client will connect and get metadata about the
 volume, and may never even talk to this host again! Neat!
 
-## Test!
+## Play around
+
+We can use this like a local filesystem:
+
+```console
+$ vagrant ssh deis-client
+deis-client $ echo 'Hello' > /mnt/glusterfs/hi.txt
+```
+
+Or, we can write big chunks of data to see how it performs:
+
+```console
+deis-client $ dd if=/dev/urandom of=/mnt/glusterfs/junk bs=64M count=16
+```
+
+## Test the cluster
 
 What happens when we take down a machine?
 
