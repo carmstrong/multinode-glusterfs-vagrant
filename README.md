@@ -2,6 +2,18 @@
 
 This guide walks users through setting up a 3-node GlusterFS cluster, creating and starting a volume, and mounting it on two clients.
 
+The Vagrantfile is setup as symlink.
+
+To use the Ubuntu 18.10 LTS Vagrantfile:
+```console
+$ ln -s Vagranfile.Ubuntu18.10 Vagrantfile
+```
+
+To use the CentOS 7 Vagrantfile:
+```console
+$ ln -s Vagranfile.CentOS7 Vagrantfile
+```
+
 It's fun to learn [GlusterFS](http://gluster.org), kids!
 
 ## Install prerequisites
