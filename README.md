@@ -1,6 +1,6 @@
 # Multinode GlusterFS on Vagrant
 
-This guide walks users through setting up a 3-node GlusterFS cluster, creating and starting a volume, and mounting it on a client.
+This guide walks users through setting up a 3-node GlusterFS cluster, creating and starting a volume, and mounting it on two clients.
 
 It's fun to learn [GlusterFS](http://gluster.org), kids!
 
@@ -8,7 +8,7 @@ It's fun to learn [GlusterFS](http://gluster.org), kids!
 
 Install [Vagrant](http://www.vagrantup.com/downloads.html) and a provider such as [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 
-We'll also need the [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) plugin so we don't pull all of these packages unnecessarily on four hosts.
+On Ubuntu box-only: We'll also need the [vagrant-cachier](https://github.com/fgrehm/vagrant-cachier) plugin so we don't pull all of these packages unnecessarily on four hosts. Vagrant-cachier requires the VirtualBox guest additions to be installed in the box image.
 
 ```console
 $ vagrant plugin install vagrant-cachier
@@ -29,6 +29,7 @@ Before we can create a volume spanning multiple machines, we need to tell Gluste
 ```console
 $ vagrant ssh gluster-server-1 -c 'sudo gluster peer probe 172.21.12.12 ; sudo gluster peer probe 172.21.12.13'
 ```
+*This setup-step is already included in the Vagrantfile and below for reference only.*
 
 ## Create a volume
 
@@ -37,10 +38,12 @@ Now we can create and start our volume spanning multiple hosts.
 ```console
 $ vagrant ssh gluster-server-1 -c 'sudo gluster volume create glustertest replica 3 transport tcp 172.21.12.11:/brick 172.21.12.12:/brick 172.21.12.13:/brick force'
 ```
+*This setup-step is already included in the Vagrantfile and below for reference only.*
 
 ```console
 $ vagrant ssh gluster-server-1 -c 'sudo gluster volume start glustertest'
 ```
+*This setup-step is already included in the Vagrantfile and below for reference only.*
 
 Here, we create a [replicated volume](http://gluster.org/community/documentation/index.php/Gluster_3.2:_Creating_Replicated_Volumes) across three hosts. The number of bricks must match the number of replicas.
 
@@ -51,6 +54,7 @@ On our client, we can mount this volume and play around with it.
 ```console
 $ vagrant ssh gluster-client -c 'sudo mkdir /mnt/glusterfs && sudo mount -t glusterfs 172.21.12.11:/glustertest /mnt/glusterfs'
 ```
+*This setup-step is already included in the Vagrantfile and below for reference only.*
 
 Note here that we just need to specify one host to mount - this is because the gluster client will connect and get metadata about the
 volume, and may never even talk to this host again! Neat!
