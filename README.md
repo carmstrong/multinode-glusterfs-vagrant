@@ -29,7 +29,7 @@ Before we can create a volume spanning multiple machines, we need to tell Gluste
 ```console
 $ vagrant ssh gluster-server-1 -c 'sudo gluster peer probe 172.21.12.12 ; sudo gluster peer probe 172.21.12.13'
 ```
-*This setup-step is already included in the Vagrantfile and below for reference only.*
+*This setup-step is already included in the Vagrantfile and above for reference only.*
 
 ## Create a volume
 
@@ -38,12 +38,12 @@ Now we can create and start our volume spanning multiple hosts.
 ```console
 $ vagrant ssh gluster-server-1 -c 'sudo gluster volume create glustertest replica 3 transport tcp 172.21.12.11:/brick 172.21.12.12:/brick 172.21.12.13:/brick force'
 ```
-*This setup-step is already included in the Vagrantfile and below for reference only.*
+*This setup-step is already included in the Vagrantfile and above for reference only.*
 
 ```console
 $ vagrant ssh gluster-server-1 -c 'sudo gluster volume start glustertest'
 ```
-*This setup-step is already included in the Vagrantfile and below for reference only.*
+*This setup-step is already included in the Vagrantfile and above for reference only.*
 
 Here, we create a [replicated volume](http://gluster.org/community/documentation/index.php/Gluster_3.2:_Creating_Replicated_Volumes) across three hosts. The number of bricks must match the number of replicas.
 
@@ -54,7 +54,7 @@ On our client, we can mount this volume and play around with it.
 ```console
 $ vagrant ssh gluster-client -c 'sudo mkdir /mnt/glusterfs && sudo mount -t glusterfs 172.21.12.11:/glustertest /mnt/glusterfs'
 ```
-*This setup-step is already included in the Vagrantfile and below for reference only.*
+*This setup-step is already included in the Vagrantfile and above for reference only.*
 
 Note here that we just need to specify one host to mount - this is because the gluster client will connect and get metadata about the
 volume, and may never even talk to this host again! Neat!
