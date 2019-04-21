@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "bento/ubuntu-18.10"
   glusterfs_version = "4.0"
   # We setup three nodes to be gluster hosts, and one gluster client to mount the volume
   (1..3).each do |i|
