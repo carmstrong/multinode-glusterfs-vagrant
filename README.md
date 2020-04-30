@@ -78,7 +78,7 @@ $ vagrant halt gluster-server-1
 ```
 
 ```console
-vagrant@gluster-client:/mnt/glusterfs$ ls
+vagrant ssh gluster-client -c 'ls /mnt/glusterfs/'
 f.txt  junk  lolol.txt
 ```
 
@@ -91,7 +91,7 @@ $ vagrant halt gluster-server-2
 ```
 
 ```console
-vagrant@gluster-client:/mnt/glusterfs$ ls
+vagrant ssh gluster-client -c 'ls /mnt/glusterfs/'
 f.txt  junk  lolol.txt
 ```
 
